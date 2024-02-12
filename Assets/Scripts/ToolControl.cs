@@ -21,6 +21,7 @@ public class ToolControl : MonoBehaviour
         {
             if(currentTool != null)
             {
+                Debug.Log("Mouse Clicked");
                 currentTool.Activate();
             }
             else
@@ -39,8 +40,10 @@ public class ToolControl : MonoBehaviour
     {
         if(toolPrefab.GetComponent<Tool>() != null)
         {
-            Destroy(currentTool);
+            Destroy(currentTool.gameObject);
             currentTool = Instantiate(toolPrefab, toolHolder.position, toolHolder.rotation).GetComponent<Tool>();
+            //Adjust the rotation
+            currentTool.gameObject.transform.Rotate(Vector3.forward, 90);
             currentTool.gameObject.transform.parent = toolHolder;
         }
         else
