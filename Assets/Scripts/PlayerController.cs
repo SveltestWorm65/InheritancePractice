@@ -13,11 +13,11 @@ public class PlayerController : MonoBehaviour
     public float xLimit;
     public float yLimit;
 
-
+    public GameManager gm;
     // Start is called before the first frame update
     void Start()
     {
-        
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -46,5 +46,18 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector2(transform.position.x, -yLimit);
         }
 
+    }
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            gm.UpdateHealth(-3);
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.CompareTag("EnemyProjectile"))
+        {
+            gm.UpdateHealth(-1);
+            Destroy(collision.gameObject);
+        }
     }
 }

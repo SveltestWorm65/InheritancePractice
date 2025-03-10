@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tool : MonoBehaviour
 {
-   public void Activate()
+   public virtual void Activate()
     {
         Debug.Log("Tool Has Been Activated!");
     }
